@@ -1,20 +1,25 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { createStackNavigator } from "@react-navigation/stack";
+import { PanGesture } from "./src/PanGesture";
+import type { Routes } from "./src/Routes";
+import { LoadAssets } from "./src/components";
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+const assets = []//[...swipingAssets];
+const Stack = createStackNavigator<Routes>();
+const App = () => (
+  <LoadAssets assets={assets}>
+    <Stack.Navigator>
+
+      <Stack.Screen
+        name="PanGesture"
+        component={PanGesture}
+        options={{
+          title: "PanGesture",
+        }}
+      />
+
+    </Stack.Navigator>
+  </LoadAssets>
+);
+
+export default App;
